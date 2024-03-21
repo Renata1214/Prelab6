@@ -8,42 +8,30 @@ using namespace std;
 
 Secret min(Secret x, Secret y) {
     Secret condition = x < y;
-    return (x * condition + !condition * y);
+    return condition;
 }
 
 Secret max(Secret x, Secret y) {
-    Secret condition = x > y;
-    return x * condition + !condition * y;
+    Secret condition = y < x;
+    return condition;
 }
 
-
-void swap_if(Secret x, Secret y, Secret z) {
+void swap_if(Secret& x, Secret& y, Secret z) {
     //    Clue 3 : Construct swap_if(x, y, z) taking 
     //    3 secret arguments and swaps x and y if z is 1 
     //    when decrypted; and does not swap if z is 0 when decrypted.Assume z corresponds either to 0 or 1.
-    Secret temporary = x;
-    x = y * z + !z * x;
-    y = x * z + !z * y;
-}
+// Secret temp = x;
+//     x = min(x, y) * () + max(x, y) * ;
+//     y = max(temp, y) * z + min(temp, y) * ();4
+Secret temp = y + (x-y)*z;
+          x= z*y - z*x + x;
+          y= temp;
+            }
 
 void secret_sort(std::vector<Secret>& arr) {
-   
-// ...
-    //Clues
-    // Clue 1: Construct a function min(x, y) that takes two secret objects
-    // and outputs the one corresponding to the minimal value when decrypted.
-    //    Clue 2 : Construct max(x, y).
-    //    Note : The sorting algorithm can also be implemented
-    //    also without creating min() and max() functions separately, but they can be
-    //    useful to implement separately to get some practice with data oblivious programming 
-    //    before integrating them in the sorting algorithm.
-    //    Clue 3 : Construct swap_if(x, y, z) taking 3 secret arguments and swaps x and y if z is 1 
-    //    when decrypted; and does not swap if z is 0 when decrypted.Assume z corresponds either to 0 or 1.
-   
-    for (int i = 0; i < arr.size() - 1; ++i) {
-        for (int j = 0; j < arr.size() - i - 1; ++j) {
-            Secret condition = arr[j] < arr[j + 1]; 
-            swap_if(arr[j], arr[j + 1], condition); 
+    for (int i = 1; i < arr.size(); ++i) {
+        for (int j = i; j >0; j--) {
+            swap_if(arr[j - 1], arr[j], max(arr[j - 1], arr[j])); 
         }
     }
 }

@@ -1,0 +1,28 @@
+Written Part:
+
+
+1. Describe how SelectionSort works in your own words or in pseudocode.
+
+In the first iteration, each element of an array or list is scanned and compared to the first element of the list.
+If any number is found to be smaller than the current first element, the two elements positions are swapped. It is relevant to notice that before swapping the numbers,
+the entire array is checked, such that the minimum number from the elements of the array after the first position is found. If none of the elements are found 
+to be smaller than the element been checked, which in this case is the element at the first position, then the element will maintain its position. 
+
+Afterwards, the process is repeated for the rest of the positions on the list. This implies that all the elements to the left of the array will be considered sorted 
+while the elements to the left of the array are considered yet to be sorted. 
+
+When the final element of the array is reached, it can be considered that the array has been sorted. 
+
+It is important to notice that in this type of sorting algorithm the elements swap positions, which implies the rest of the elements are no affected by this movement. 
+
+
+2. Describe how InsertionSort works in your own words or in pseudocode.
+
+The process will start by iterating over the entire list and comparing each current element to its predecessor. If the current element is found to be smaller 
+than its predecessor, then the list of elements after the current element is moved one position such that there is space to move the current element before its "predecessor"
+and the predecessor after the current element. Afterwards the current element is again compared to its new predecessor and if it is again smaller, the process outlined before 
+repeats. If the current element is not smaller than its predecessor then the iteration throughout the list continues. 
+
+It is relevant to notice that in this case, such thing as a swap does not occur, and the rest of the elements in the list or array are affected when an element changes position, 
+since the movement occurs through insertion on the list. Additionally, the elements to the left of the list are considered to be semisorted since it could be the case that other 
+elements to the right of the list are yet to be located on the correct positions. 
